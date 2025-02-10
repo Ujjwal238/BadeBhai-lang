@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree-Walk Interpreter Flow</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a237e;
+            margin-bottom: 2rem;
+        }
+
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .phase {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #01579b;
+        }
+
+        .phase-title {
+            font-size: 1.25rem;
+            color: #01579b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e1f5fe;
+            font-weight: bold;
+        }
+
+        .process-step {
+            background: #f3e5f5;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #4a148c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2196f3;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            font-weight: bold;
+        }
+
+        .data-flow {
+            text-align: center;
+            color: #33691e;
+            background: #f1f8e9;
+            padding: 0.5rem;
+            border-radius: 20px;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            border: 1px solid #33691e;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legend {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .legend-title {
+            font-size: 1.1rem;
+            color: #1a237e;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .legend-items {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phase-example {
+            background: white;
+            border: 2px solid #01579b;
+        }
+
+        .process-example {
+            background: #f3e5f5;
+            border: 1px solid #4a148c;
+        }
+
+        .data-example {
+            background: #f1f8e9;
+            border: 1px solid #33691e;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .flow-container {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tree-Walk Interpreter Flow</h1>
+        
+        <div class="data-flow">Source Code</div>
+        
+        <div class="flow-container">
+            <!-- Scanning Phase -->
+            <div class="phase">
+                <h2 class="phase-title">1. Scanning Phase</h2>
+                <div class="process-step">Remove Comments & Whitespace</div>
+                <div class="process-step">Tokenize Characters</div>
+            </div>
+
+            <div class="arrow">→</div>
+            <div class="data-flow">Token Stream</div>
+
+            <!-- Parsing Phase -->
+            <div class="phase">
+                <h2 class="phase-title">2. Parsing Phase</h2>
+                <div class="process-step">Apply Grammar Rules</div>
+                <div class="process-step">Build Abstract Syntax Tree (AST)</div>
+                <div class="process-step">Syntax Error Handling</div>
+            </div>
+            
+            <div class="arrow">→</div>
+            <div class="data-flow">AST</div>
+        
+
+            <!-- Static Analysis -->
+            <div class="phase">
+                <h2 class="phase-title">3. Static Analysis</h2>
+                <div class="process-step">Scope Resolution</div>
+                <div class="process-step">Type Checking</div>
+                <div class="process-step">Semantic Validation</div>
+            </div>
+
+            <div class="arrow">→</div>
+            <div class="data-flow">Validated AST</div>
+
+            <!-- Interpretation -->
+            <div class="phase">
+                <h2 class="phase-title">4. Interpretation</h2>
+                <div class="process-step">AST Traversal</div>
+                <div class="process-step">Expression Evaluation</div>
+                <div class="process-step">Statement Execution</div>
+                <div class="process-step">Runtime Environment</div>
+            </div>
+        </div>
+        
+        <div class="data-flow">Program Output</div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-title">Legend</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-box phase-example"></div>
+                    <span>Phase</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box process-example"></div>
+                    <span>Process</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box data-example"></div>
+                    <span>Data</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
